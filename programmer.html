@@ -5,6 +5,16 @@
     <title>programmer humor</title>
 </head>
 <body>
-<a href="index.html">home</a>
+<nav>
+    <a href="index.html">home</a>
+</nav>
+    <div x-data="{
+        responsedata: null,
+        async getData() {
+            this.responsedata = await (await fetch('https://api-service-tvanloy.cloud.okteto.net/wholesome-memes')).json();
+        }
+    }">
+        <button x-on:click="getData" x-init="getData">New meme</button>
+    </div>
 </body>
 </html>
