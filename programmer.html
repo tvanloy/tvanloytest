@@ -11,7 +11,7 @@
     <div x-data="{
         responsedata: null,
         async getData() {
-            this.responsedata = await (await fetch('https://api-service-tvanloy.cloud.okteto.net/programmerhumor')).json();
+            this.responsedata = await (await fetch('https://api-service-tvanloy.cloud.okteto.net/programmerhumor'));
         }
     }">
         <button x-on:click="getData" x-init="getData">New meme</button>
