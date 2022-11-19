@@ -13,5 +13,36 @@
             <li><a href="programmer.html">Programmer humor</a></li>
         </ul>
     </div>
+        <div class="main">
+        <h4>Create a new order</h4>
+        <div x-data="{
+        responsedata: null,
+        firstname: null,
+        lastname: null,
+        product: null,
+        async callmethod1() {
+            this.responsedata = await (await fetch('https://api-service-arnevangheel.cloud.okteto.net/order',
+            {
+                method: 'POST',
+                body: JSON.stringify({
+                    first_name: this.firstname,
+                    last_name: this.lastname,
+                    product: this.product,
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })).json();
+        },
+    }">
+            <label>First Name:</label><input type="text" x-model="firstname"><br>
+            <label>Last Name:</label><input type="text" x-model="lastname"><br>
+            <label>Product:</label><input type="text" x-model="product"><br>
+            <button x-on:click="callmethod1">Create Order</button>
+            <br><br>
+            <p>Order Nummer: <strong x-text="responsedata.OrderId"></strong></p>
+        </div>
+    </div>
+
 </body>
 </html>
